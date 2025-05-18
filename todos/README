@@ -1,0 +1,11 @@
+# Input
+
+A controlled TextInput captures the user’s to-do text. The input field shows the “What needs to be done?” placeholder. Each keystroke triggers the `inputChange` handler, updating `inputValue` in state. When the user taps **Submit**, the `inputValue` is validated (non-empty) before being added to the `todos` array.
+
+# Process
+
+Upon submission, a new to-do object with `title`, `todoIndex`, and `complete` flag is appended to the `state.todos` array. `toggleComplete` and `deleteTodo` handlers update or filter this array to toggle completion or remove items. A `filter` state drives `visibleTodos` by showing All, Active, or Complete tasks. `setFilter` updates this property, and `visibleTodos` is recomputed on each render according to the selected filter.
+
+# Output
+
+In render, **Heading** displays the title and **Input** shows `inputValue`. **TodoList** maps each `visibleTodos` item into a **Todo** component, rendering title and buttons. A bottom tab bar shows three filters—All, Active, Complete—with the active filter highlighted. Tapping any control updates state and re-renders the list.
