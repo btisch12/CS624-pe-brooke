@@ -1,11 +1,9 @@
 import React, { useState } from 'react';
 import { View, Text, TextInput, Button, StyleSheet } from 'react-native';
 
-export default function AddCountry({ route }) {
+export default function AddCountry({ addCountry }) {
   const [name, setName] = useState('');
   const [currency, setCurrency] = useState('');
-
-  const { addCountry } = route.params;
 
   const handleAddCountry = () => {
     if (name && currency) {
@@ -55,4 +53,3 @@ const styles = StyleSheet.create({
     marginBottom: 15,
   },
 });
-

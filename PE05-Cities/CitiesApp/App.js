@@ -14,15 +14,40 @@ import City from './src/Cities/City';
 import AddCity from './src/AddCity/AddCity';
 
 // Countries imports
+import Country from './src/Countries/Country';
 import Countries from './src/Countries/Countries';
-import AddCountry from './src/Countries/AddCountry';
+import AddCountry from './src/AddCounrty/AddCountry';
 
 import { colors } from './src/theme';
 
 const Tab = createBottomTabNavigator();
 const Stack = createNativeStackNavigator();
 
-function CitiesStackScreen({ navigation, route, cities, addCity, addLocation }) {
+function CountriesStackScreen({ countries }) {
+  return (
+    <Stack.Navigator
+      screenOptions={{
+        headerStyle: { backgroundColor: colors.primary },
+        headerTintColor: '#fff',
+      }}
+    >
+      <Stack.Screen
+        name="Countries"
+        children={(props) => (
+          <Countries {...props} countries={countries} />
+        )}
+      />
+      <Stack.Screen
+        name="Country"
+        children={(props) => (
+          <Country {...props} countries={countries} />
+        )}
+      />
+    </Stack.Navigator>
+  );
+}
+
+function CitiesStackScreen({ cities, addCity, addLocation }) {
   return (
     <Stack.Navigator
       screenOptions={{
@@ -109,9 +134,12 @@ export default class App extends Component {
             )}
           />
           <Tab.Screen
-            name="Countries"
+            name="CountriesNav"
             children={(props) => (
-              <Countries {...props} countries={this.state.countries} />
+              <CountriesStackScreen
+                {...props}
+                countries={this.state.countries}
+              />
             )}
           />
           <Tab.Screen
